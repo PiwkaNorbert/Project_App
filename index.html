@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Index</title>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="JTHTML 8.6">
+    <meta name="Robots" content="index">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+        .list {
+            background-color: #ddd;
+            display: table-cell;
+        }
+        body {
+            font-family: 'Open Sans',serif;
+            font-weight: 300;
+        }
+
+        .done {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        table {
+            border-spacing: 0;
+            width: 100%;
+            border: 8px solid #f1f0eb;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background-color: #494430;
+            color: white;
+        }
+
+        th {
+            cursor: pointer;
+            font-weight: 300;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .footer-text{
+            font-size: 13px;
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .dropdown {
+            display:inline-block;
+            position: relative;
+            padding:0;
+            border:0;
+            border-radius:5px;
+            font-weight:400;
+            background:#FFF;
+            color:#777;
+        }
+
+        .nav-item{
+            font-weight: 700;
+            padding : 4px;
+        }
+
+        .form-element{
+            width: 30%;
+            margin:0;
+            padding:0;
+        }
+
+        form{
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <style>
+        /* Customize the label (the container) */
+        .container {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            cursor: pointer;
+        }
+
+        /* Create a custom checkbox */
+        .myCheckbox {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .myCheckbox {
+            background-color: #ccc;
+        }
+        /* When the checkbox is checked, add a blue background */
+        .container input:checked ~ .myCheckbox {
+            background-color: #FF0000;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container input:checked ~ .myCheckbox:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container .myCheckbox:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid red;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .removeBtn{
+            visibility:hidden;
+        }
+
+        tr:hover .removeBtn{
+            visibility:visible;
+        }
+    </style>
+</head>
+  <body>
+     
+        <form action="" method="" id="addForm">
+            <input type="text" name="name" Placeholder="Add Task" id="addNameInput" class="form-element">
+            <select type="text" name="prio" class="form-element">
+                <option value="low">Low</option>
+                <option value="med">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <input type="submit" value="Create" onclick="addElement(event)" class="form-element"/>
+        </form>
+
+
+        <table>
+            <thead>
+            <tr>
+                <th onclick="sortColumn('name')" style="cursor: pointer;">
+                    Task Name <span id="sort-m-name"></span>
+                </th>
+                <th onclick="sortColumn('prio')" style="cursor: pointer;">
+                    Priority <span id="sort-m-prio"></span>
+                </th>
+                <th onclick="sortColumn('done')" style="cursor: pointer;">
+                    Done <span id="sort-m-done"></span>
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+            <tfoot>
+            <tr>
+                <td colspan="4" style="text-align: right;">
+                    <span class="footer-text">Rows per page</span>
+                    <select class="dropdown" id="row-count" onchange="changePageSize()">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+
+                    <span id="text-amount-pagination" class="footer-text"></span>
+
+                    <span onclick="decreasePage()" style="cursor: pointer;" class="nav-item"><</span>
+                    <span onclick="incrementPage()" style="cursor: pointer;" class="nav-item">></span>
+                </td>
+            </tr>
+            </tfoot>
+
+        </table>
+
+  </body>
+
+    <script src="script.js"></script>
+</html>
